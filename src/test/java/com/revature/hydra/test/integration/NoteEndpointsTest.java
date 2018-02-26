@@ -1,4 +1,4 @@
-package com.revature.caliber.test.integration;
+package com.revature.hydra.test.integration;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
