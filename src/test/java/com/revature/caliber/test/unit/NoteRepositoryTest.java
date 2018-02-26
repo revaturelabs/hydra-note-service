@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.revature.caliber.model.SimpleNote;
-import com.revature.caliber.model.NoteType;
-import com.revature.caliber.repository.NoteRepository;
+import com.revature.hydra.model.NoteType;
+import com.revature.hydra.model.SimpleNote;
+import com.revature.hydra.repository.NoteRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
