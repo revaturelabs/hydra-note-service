@@ -18,7 +18,7 @@ public class NoteCompositionMessagingService {
 	
 	private static final String SINGLE_BATCH_ROUTING_KEY = "XLNbCWqQzFHr9JfZ";
 	private static final String SINGLE_TRAINEE_ROUTING_KEY = "JyoH3uRmktGn9MnW";
-	private static final String RABBIT_REPO_EXCHANGE = "revature.caliber.repos";
+	private static final String RABBIT_REPO_EXCHANGE = "revature.hydra.repos";
 	
 	/**
 	 * Sends a request for a SimpleBatch to the Batch service identified by

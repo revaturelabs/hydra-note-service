@@ -24,7 +24,7 @@ public class NoteRepositoryMessagingService {
 	 * @param message The message received from the messaging queue
 	 * @return The simple note returned by the request dispatcher
 	 */
-	@RabbitListener(queues = "revature.caliber.repos.note")
+	@RabbitListener(queues = "revature.hydra.repos.note")
 	public SimpleNote receiveSingleSimpleNoteRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
@@ -39,7 +39,7 @@ public class NoteRepositoryMessagingService {
 	 * @param message The message received from the messaging queue
 	 * @return The list of simple notes returned by the request dispatcher
 	 */
-	@RabbitListener(queues = "revature.caliber.repos.note.list")
+	@RabbitListener(queues = "revature.hydra.repos.note.list")
 	public List<SimpleNote> receiveListSimpleNoteRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
@@ -54,8 +54,8 @@ public class NoteRepositoryMessagingService {
 	 * @param message The message received from the messaging queue
 	 * @return The note returned by the request dispatcher
 	 */
-	@RabbitListener(queues = "revature.caliber.service.note.list")
-//	@RabbitListener(queues = "revature.caliber.service.test.list")
+	@RabbitListener(queues = "revature.hydra.service.note.list")
+//	@RabbitListener(queues = "revature.hydra.service.test.list")
 	public List<Note> receiveListNoteRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
@@ -69,8 +69,8 @@ public class NoteRepositoryMessagingService {
 	 * @param message The message received from the messaging queue
 	 * @return The note returned by the request dispatcher
 	 */
-	@RabbitListener(queues = "revature.caliber.service.note")
-//	@RabbitListener(queues = "revature.caliber.service.test.list")
+	@RabbitListener(queues = "revature.hydra.service.note")
+//	@RabbitListener(queues = "revature.hydra.service.test.list")
 	public Note receiveNoteRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
