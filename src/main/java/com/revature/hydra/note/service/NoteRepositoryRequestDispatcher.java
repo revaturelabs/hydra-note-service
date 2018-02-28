@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
-import com.revature.hydra.note.model.Note;
-import com.revature.hydra.note.model.SimpleNote;
-import com.revature.hydra.note.repository.NoteRepository;
+import com.revature.beans.Note;
+import com.revature.beans.SimpleNote;
+import com.revature.hydra.note.data.NoteRepository;
 
 @Service
 public class NoteRepositoryRequestDispatcher {

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.revature.hydra.note.model.SimpleBatch;
-import com.revature.hydra.note.model.SimpleTrainee;
+import com.revature.beans.SimpleBatch;
+import com.revature.beans.SimpleTrainee;
 
 @Service
 public class NoteCompositionMessagingService {

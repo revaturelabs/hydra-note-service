@@ -8,9 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.revature.hydra.note.model.Note;
-import com.revature.hydra.note.model.SimpleNote;
-import com.revature.hydra.note.repository.NoteRepository;
+import com.revature.beans.Note;
+import com.revature.beans.SimpleNote;
+import com.revature.hydra.note.data.NoteRepository;
 import com.revature.hydra.note.service.NoteCompositionService;
 
 @Configuration

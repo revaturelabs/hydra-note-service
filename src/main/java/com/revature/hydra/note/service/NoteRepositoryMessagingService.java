@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.revature.hydra.note.model.Note;
-import com.revature.hydra.note.model.SimpleNote;
+import com.revature.beans.Note;
+import com.revature.beans.SimpleNote;
 
 @Service
 public class NoteRepositoryMessagingService {

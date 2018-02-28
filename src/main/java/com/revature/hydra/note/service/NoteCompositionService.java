@@ -7,15 +7,15 @@ import org.bouncycastle.jcajce.provider.asymmetric.dsa.DSASigner.detDSA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.hydra.note.model.Batch;
-import com.revature.hydra.note.model.Note;
-import com.revature.hydra.note.model.NoteType;
-import com.revature.hydra.note.model.SimpleBatch;
-import com.revature.hydra.note.model.SimpleNote;
-import com.revature.hydra.note.model.SimpleTrainee;
-import com.revature.hydra.note.model.Trainee;
-import com.revature.hydra.note.model.TrainingStatus;
-import com.revature.hydra.note.repository.NoteRepository;
+import com.revature.beans.Batch;
+import com.revature.beans.Note;
+import com.revature.beans.NoteType;
+import com.revature.beans.SimpleBatch;
+import com.revature.beans.SimpleNote;
+import com.revature.beans.SimpleTrainee;
+import com.revature.beans.Trainee;
+import com.revature.beans.TrainingStatus;
+import com.revature.hydra.note.data.NoteRepository;
 
 @Service
 public class NoteCompositionService {

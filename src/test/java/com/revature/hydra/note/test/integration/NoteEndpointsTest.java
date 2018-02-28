@@ -16,9 +16,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
-import com.revature.hydra.note.model.Batch;
-import com.revature.hydra.note.model.Note;
-import com.revature.hydra.note.model.QCStatus;
+import com.revature.beans.Batch;
+import com.revature.beans.Note;
+import com.revature.beans.QCStatus;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
