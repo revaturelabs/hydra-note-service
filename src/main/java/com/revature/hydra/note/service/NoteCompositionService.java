@@ -1,9 +1,10 @@
 package com.revature.hydra.note.service;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.bouncycastle.jcajce.provider.asymmetric.dsa.DSASigner.detDSA;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class NoteCompositionService {
 	@Autowired
 	private NoteCompositionMessagingService noteCompositionMessagingService;
 	
+	private static final Logger log = Logger.getLogger(NoteCompositionService.class);
 	/**
 	 * Saves a Note by instantiating a new SimpleNote from the Note
 	 * and calling the NoteRepository save method.
@@ -73,8 +75,11 @@ public class NoteCompositionService {
 	 * @return The List of batch-level Notes written by Trainers for the given week
 	 */
 	public List<Note> findBatchNotes(Integer batchId, Short week) {
+		log.info("findBatchNotes handling");
 		List<SimpleNote> basis = noteRepository.findAllByBatchIdAndWeekAndQcFeedbackAndType(batchId, week, false, NoteType.BATCH);
+		log.info("findBatchNotes basisSet, basis = " + Arrays.toString(basis.toArray()));
 		List<Note> result = composeListOfNotes(basis, false);
+		log.info("findBatchNotes resultSet, result = " + Arrays.toString(result.toArray()));
 		
 		return result;
 	}
@@ -166,7 +171,9 @@ public class NoteCompositionService {
 	 * @return The List of Batch-level Notes for the given week
 	 */
 	public List<Note> findAllBatchNotes(Integer batchId, Short week) {
+		log.info("Finding all batch notes");
 		List<SimpleNote> basis = noteRepository.findAllByBatchIdAndWeekAndType(batchId, week, NoteType.BATCH);
+		log.info("Basis is " + basis);
 		List<Note> result = composeListOfNotes(basis, false);
 		
 		return result;
@@ -218,9 +225,9 @@ public class NoteCompositionService {
 	public List<Note> findAllQCTraineeNotes(Integer batchId, Short week) {
 		
 		List<SimpleNote> basis = noteRepository.findAllByBatchIdAndWeekAndQcFeedbackAndTypeOrderByWeekAsc(batchId, week, true, NoteType.QC_TRAINEE);
-		System.out.println(basis);
+		log.info("Basis: " + basis);
 		List<Note> result = composeListOfNotes(basis, false);
-		System.out.println(result);
+		log.info("Result: " + result);
 		return result;
 	}
 	
@@ -245,7 +252,8 @@ public class NoteCompositionService {
 	 */
 	private List<Note> composeListOfNotes(List<SimpleNote> src, boolean includeDropped) {
 		List<Note> dest = new LinkedList<Note>();
-		System.out.println(dest);
+		log.info("Dest: " + dest);
+		log.info("Src: " + src);
 		for(SimpleNote curr : src) {
 			Note note = composeNote(curr);
 			
@@ -270,20 +278,24 @@ public class NoteCompositionService {
 	 * @return The Note composed from information in the SimpleNote
 	 */
 	private Note composeNote(SimpleNote src) {
+		log.trace("Composing note!");
 		SimpleBatch simpleBatch = null;
 		SimpleTrainee simpleTrainee = null;
 		Batch batch = null;
 		Trainee trainee = null;
 		Note dest = null;
 		
+		log.info("src: " + src);
 		if(src == null) return null;
 		dest = new Note(src);
 
-		System.out.println("SimpleNote: " + src);
-		System.out.println("Note: " + dest);
+		log.info("SimpleNote: " + src);
+		log.info("Note: " + dest);
 		
 		if(src.getBatchId() != null) {
+			log.info("abadda send that message");
 			simpleBatch =  noteCompositionMessagingService.sendSingleSimpleBatchRequest(src.getBatchId());
+			log.info("got back " + simpleBatch.toString());
 			batch = new Batch(simpleBatch);
 			dest.setBatch(batch);
 		}

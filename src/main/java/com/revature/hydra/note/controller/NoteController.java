@@ -24,7 +24,9 @@ import com.revature.hydra.note.service.NoteCompositionService;
 //@PreAuthorize("isAuthenticated()")
 @CrossOrigin("http://localhost:8090")
 public class NoteController {
+	
 	private static final Logger log = Logger.getLogger(NoteController.class);
+	
 	@Autowired
 	private NoteCompositionService noteService;
 	
@@ -75,6 +77,7 @@ public class NoteController {
 	@PreAuthorize("hasAnyRole('VP', 'QC', 'TRAINER', 'STAGING','PANEL')")
 	public ResponseEntity<List<Note>> findBatchNotes(@PathVariable Integer batchId, @PathVariable Integer week) {
 		log.info(FINDING_WEEK + week + " batch notes for batch: " + batchId);
+		//log.info("Properties are " + System.getProperties());
 		return new ResponseEntity<>(noteService.findBatchNotes(batchId, week.shortValue()), HttpStatus.OK);
 	}
 

@@ -60,7 +60,6 @@ public class NoteRepositoryMessagingService {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
 		JsonObject request = element.getAsJsonObject();
-		System.out.println(message);
 		return noteRepositoryRequestDispatcher.processListNoteRequest(request);
 	}
 	/**
@@ -75,7 +74,6 @@ public class NoteRepositoryMessagingService {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
 		JsonObject request = element.getAsJsonObject();
-		System.out.println(message);
 		return noteRepositoryRequestDispatcher.processNoteRequest(request);
 	}
 }
