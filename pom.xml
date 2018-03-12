@@ -25,6 +25,20 @@
 		<spring-cloud.version>Edgware.SR1</spring-cloud.version>
 	</properties>
 
+	<distributionManagement>  
+		<!-- Publish the versioned releases here -->  
+	    <repository>
+	    	<name>Nexus</name>  
+	    	<url>http://35.183.1.31/nexus/content/repositories/releases</url>  
+	    </repository>  
+	      
+	    <!-- Publish the versioned releases here -->  
+	    <snapshotRepository>  
+	    	<id>my-nexus-credentials </id>  
+	    	<name>Nexus</name>  
+	    	<url>http://35.183.1.31/nexus/content/repositories/snapshots</url>  
+		</snapshotRepository>  
+    </distributionManagement>  
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

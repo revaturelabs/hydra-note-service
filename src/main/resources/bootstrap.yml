@@ -3,4 +3,4 @@ spring:
     name: note
   cloud:
     config:
-      uri: http://35.183.9.62:8888
+      uri: http://35.182.214.189:8888

@@ -36,7 +36,7 @@ public class NoteEndpointsTest {
 		gson = new Gson();
 	}
 	
-	//@Ignore
+	@Ignore
 	@Test
 	public void createNoteTest() throws Exception {
 		Note note = Note.qcBatchNote("Test", 8, new Batch(), QCStatus.Good);
