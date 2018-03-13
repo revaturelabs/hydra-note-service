@@ -1,10 +1,10 @@
 package com.revature.hydra.note.test.integration;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +30,92 @@ public class NoteEndpointsTest {
 	
 	private Gson gson;
 	
+	private static final String ADDRESS = "http://35.182.214.189";
+	private static final String PORT = "8081";
 	@Before
 	public void setUp() {
 		mvc = MockMvcBuilders.webAppContextSetup(context).build();
 		gson = new Gson();
 	}
 	
-	@Ignore
 	@Test
 	public void createNoteTest() throws Exception {
 		Note note = Note.qcBatchNote("Test", 8, new Batch(), QCStatus.Good);
 		
-		mvc.perform(post("http://localhost:8081/note/note/create")
+		mvc.perform(post(ADDRESS + ":" + PORT + "/note/create")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(gson.toJson(note, Note.class).toString()))
 				.andExpect(status().isCreated());
+	}
+	
+	@Test
+	public void updateNoteTest() throws Exception {
+		Note note = Note.qcBatchNote("Test", 8, new Batch(), QCStatus.Good);
+		
+		mvc.perform(post(ADDRESS + ":" + PORT + "/note/create")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(note, Note.class).toString()))
+				.andExpect(status().isCreated());
+		
+		note.setContent("Updated Test");
+		
+		mvc.perform(post(ADDRESS + ":" + PORT + "/note/update")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(note, Note.class).toString()))
+				.andExpect(status().isCreated());
+	}
+	
+	@Test
+	public void findBatchNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/trainer/note/batch/2100/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findIndividualNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/trainer/note/trainee/2050/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findTraineeNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/trainer/note/trainee/5356/for/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findQCTraineeNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/qc/note/trainee/5356/for/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findQCBatchNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/qc/note/batch/2100/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void getAllQCTraineeNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/qc/note/trainee/2100/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void getAllQCTraineeOverallNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/qc/note/trainee/5356"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findAllBatchNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/vp/note/batch/2100/2"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void findAllTraineeNotesTest() throws Exception {	
+		mvc.perform(get(ADDRESS + ":" + PORT + "/note/all/notes/trainee/5356"))
+				.andExpect(status().isOk());
 	}
 }
