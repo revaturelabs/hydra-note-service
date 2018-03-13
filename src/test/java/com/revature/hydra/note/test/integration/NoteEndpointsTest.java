@@ -30,7 +30,7 @@ public class NoteEndpointsTest {
 	
 	private Gson gson;
 	
-	private static final String ADDRESS = "http://35.182.214.189";
+	private static final String ADDRESS = "http://35.183.1.239";
 	private static final String PORT = "8081";
 	@Before
 	public void setUp() {
