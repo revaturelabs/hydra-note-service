@@ -3,7 +3,8 @@
 --------------------------------------------------------
    DROP SEQUENCE IF EXISTS NOTE_ID_SEQUENCE;
    CREATE SEQUENCE  IF NOT EXISTS  NOTE_ID_SEQUENCE  MINVALUE 6500 INCREMENT BY 1 START WITH 6500;
-
+   DROP TABLE IF EXISTS CALIBER_NOTE;
+   CREATE TABLE CALIBER_NOTE(NOTE_ID int(11) PRIMARY KEY, NOTE_CONTENT varchar(1000), MAX_VISIBILITY int(1) not null, IS_QC_FEEDBACK int(20) not null, QC_STATUS varchar(100), NOTE_TYPE varchar(10) not null, WEEK_NUMBER int(10) not null, BATCH_ID int(11), TRAINEE_ID int(11));
 
 Insert into CALIBER_NOTE (NOTE_ID,NOTE_CONTENT,MAX_VISIBILITY,IS_QC_FEEDBACK,QC_STATUS,NOTE_TYPE,WEEK_NUMBER,BATCH_ID,TRAINEE_ID) values (5061,'Associate cannot keep up with the pace of coding his project and learning in class. No confidence during the interview and did not answer most SQL questions correctly. Associate will be dropped.',2,0,null,'TRAINEE',2,2050,5356);
 Insert into CALIBER_NOTE (NOTE_ID,NOTE_CONTENT,MAX_VISIBILITY,IS_QC_FEEDBACK,QC_STATUS,NOTE_TYPE,WEEK_NUMBER,BATCH_ID,TRAINEE_ID) values (5062,'Good understanding of SQL and PL/SQL, however he loses focus and did side projects instead of working on his project requirements.',2,0,null,'TRAINEE',2,2050,5352);
